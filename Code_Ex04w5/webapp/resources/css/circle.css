@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.circle-frame {
+	font-size: 8px;
+	display: flex;
+}
+
+.circle {
+	width: 1rem;
+	height: 1rem;
+	padding: 0.1rem;
+	border-radius: 50%;
+	font-size: 1rem;
+	text-align: center;
+	line-height: 1rem;
+}
+
+.circle.top-right {
+	vertical-align: top;
+}
+
+.circle.red {
+	background: red;
+}
+
+.circle.blue {
+	background: red;
+}
+
+#temp { 
+	/* 왼쪽 아래 */ 
+	-moz-border-radius-bottomleft:15px; 
+/* 	오른쪽 아래 */
+	-moz-border-radius-bottomright:15px; 
+	/* 왼쪽 위에 */ 
+	-moz-border-radius-topleft:15px;
+	/* 오른쪽 위에 */ 
+	-moz-border-radius-topright:15px;
+}

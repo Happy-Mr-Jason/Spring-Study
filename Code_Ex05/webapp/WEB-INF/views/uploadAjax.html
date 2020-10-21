@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Upload Files using Ajax</h1>
+	
+	<div class="upladDiv">
+		<input type='file' name='uploadFile' multiple />
+	</div>
+
+
+	<button id='uploadBtn'>Upload</button>
+	<script type="text/javascript">
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+
+	var uploadBtn = document.getElementById("uploadBtn");
+
+	uploadBtn.onclick = function() {
+		var formData = new FormData();
+		var inputFile = document.querySelector("input[name='uploadFile']");
+		var files = inputFile.files;
+		console.log(files);
+
+		for (var i = 0; i < files.length; i++) {
+			formData.append('uploadFile', files[i]);
+		}
+
+		fetch('http://localhost:8088/uploadAjaxAction', {
+			method: 'POST',
+			body: formData,
+		}).then(response => console.log('Success:', response))
+		.catch(error => console.error('Error:', error));
+	};
+
+});
+
+</script>
+
+</body>
+</html>
