@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>RESTful 웹서비스 클라이언트(XML)</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script type="text/javascript" >
+	$(function(){
+		$.ajax({
+			type:'get',
+			url:'usersXml',
+			contentType:'application/xml;charset=utf-8',
+			dataType:'xml',
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:showResult
+		});
+	});
+	
+	function showResult(xhr) {
+		console.log(xhr);
+		if($(xhr).find("status").text() == 'success') {
+			$(xhr).find("user").each(function(idx,user){
+				$('<tr>')
+				.append($('<td>').html($(user).find("userId").text()))
+				.append($('<td>').html($(user).find("name").text()))
+				.append($('<td>').html($(user).find("gender").text()))
+				.append($('<td>').html($(user).find("city").text()))
+				.appendTo('tbody');
+			});//each
+		}//if
+	}//showResult
+</script>
+</head>
+<body>
+	<div class="container">	
+		<h2>사용자 목록</h2>
+		<table class="table text-center">
+			<thead>
+			<tr>
+				<th class="text-center">아이디</th>
+				<th class="text-center">이름</th>
+				<th class="text-center">성별</th>
+				<th class="text-center">거주지</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>	
+</body>
+</html>
